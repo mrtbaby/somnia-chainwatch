@@ -4,6 +4,8 @@
 
 Built for the [Somnia Reactivity Mini Hackathon](https://docs.somnia.network/developer/reactivity) • Somnia Testnet (Chain ID: 50312)
 
+🎥 **[Watch the Demo Video](https://youtu.be/uNF0-Q1m9O0)**
+
 ---
 
 ## 🚀 What It Does
@@ -180,3 +182,7 @@ Native STT transfers do not emit EVM logs, but **all ERC20 testing tokens** (lik
 
 ## 📄 License
 MIT
+
+---
+
+🎥 **[Watch the Demo Video](https://youtu.be/uNF0-Q1m9O0)**
