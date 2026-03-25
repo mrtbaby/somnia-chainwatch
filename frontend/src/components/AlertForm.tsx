@@ -58,7 +58,7 @@ export function AlertForm() {
     };
 
     return (
-        <div className="card alert-form">
+        <div className="card alert-form card--white">
             <div className="card-header">
                 <span className="card-icon">🔔</span>
                 <h2>Register Alert</h2>

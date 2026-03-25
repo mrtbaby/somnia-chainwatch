@@ -1,5 +1,12 @@
 import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { FeaturesSection } from "./FeaturesSection";
+import { Navbar } from "./Navbar";
+import { LiquidMetalButton } from "./LiquidMetalButton";
+import { Footer } from "./Footer";
+import { HeroBackground } from "./HeroBackground";
+import { BGPattern } from "./BGPattern";
+import { motion } from "motion/react";
 
 export function LandingPage() {
     const { isConnected } = useAccount();
@@ -7,82 +14,79 @@ export function LandingPage() {
 
     if (isConnected) return null;
 
+    const fadeUp = {
+        hidden: { opacity: 0, y: 30, scale: 0.95 },
+        visible: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 1,
+                delay: 0.3 + i * 0.15,
+                ease: [0.25, 0.4, 0.25, 1] as const,
+            },
+        }),
+    };
+
     return (
-        <div className="landing">
-            <div className="landing-bg-grid" />
-            <div className="landing-glow landing-glow-1" />
-            <div className="landing-glow landing-glow-2" />
+        <div className="landing relative overflow-hidden">
+            {/* Technical Grid Background */}
+            <BGPattern 
+                variant="grid" 
+                size={40} 
+                fill="rgba(124, 58, 237, 0.1)" 
+                mask="fade-edges"
+            />
+            
+            {/* Elegant Background Shapes */}
+            <HeroBackground />
 
-            <nav className="landing-nav">
-                <div className="landing-logo">
-                    <img src="/logo.png" alt="ChainWatch Logo" className="landing-logo-img" />
-                    ChainWatch
-                </div>
-            </nav>
+            {/* Floating Navbar */}
+            <Navbar />
 
+            {/* Hero Content */}
             <main className="landing-main">
-                <div className="landing-badge">
-                    ⚡ Powered by Somnia Reactivity
-                </div>
-
-                <h1 className="landing-headline">
+                <motion.h1
+                    custom={0}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    className="landing-headline"
+                >
                     Your wallet,{" "}
                     <span className="landing-headline-accent">always watching.</span>
-                </h1>
+                </motion.h1>
 
-                <p className="landing-sub">
+                <motion.p
+                    custom={1}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    className="landing-sub"
+                >
                     Register on-chain alerts and get notified — in your browser and on Telegram —
                     the instant a wallet moves tokens. No polling. No backend. The chain watches itself.
-                </p>
+                </motion.p>
 
-                <div className="landing-cta">
-                    <button
-                        className="btn-landing-primary"
+                <motion.div
+                    custom={2}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    className="landing-cta"
+                >
+                    <LiquidMetalButton
+                        label="Connect Wallet to Start"
                         onClick={openConnectModal}
-                    >
-                        Connect Wallet to Start
-                        <span className="btn-arrow">→</span>
-                    </button>
-                </div>
-
-                <div className="landing-features">
-                    <div className="landing-feature">
-                        <span className="feature-icon">⚡</span>
-                        <div>
-                            <strong>Sub-second delivery</strong>
-                            <p>Alerts fire at the block level — no delays, no polling</p>
-                        </div>
-                    </div>
-                    <div className="landing-feature">
-                        <span className="feature-icon">🛡️</span>
-                        <div>
-                            <strong>Trustless &amp; on-chain</strong>
-                            <p>Subscriptions live on Somnia — not on our servers</p>
-                        </div>
-                    </div>
-                    <div className="landing-feature">
-                        <span className="feature-icon">📲</span>
-                        <div>
-                            <strong>Telegram notifications</strong>
-                            <p>Link your wallet once, get pushed alerts anywhere</p>
-                        </div>
-                    </div>
-                    <div className="landing-feature">
-                        <span className="feature-icon">👁️</span>
-                        <div>
-                            <strong>Watch any wallet</strong>
-                            <p>Monitor transfers in and out — for any ERC20 token</p>
-                        </div>
-                    </div>
-                </div>
+                    />
+                </motion.div>
             </main>
 
-            <footer className="landing-footer">
-                Built for the{" "}
-                <a href="https://docs.somnia.network/developer/reactivity" target="_blank" rel="noopener noreferrer">
-                    Somnia Reactivity Hackathon
-                </a>
-            </footer>
+            {/* Features Grid */}
+            <FeaturesSection />
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 }

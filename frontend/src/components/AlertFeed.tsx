@@ -34,7 +34,7 @@ export function AlertFeed() {
     };
 
     return (
-        <div className="card alert-feed">
+        <div className="card alert-feed card--purple">
             <div className="card-header">
                 <div className="feed-title">
                     <span className="card-icon">⚡</span>

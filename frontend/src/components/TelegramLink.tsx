@@ -163,7 +163,7 @@ export function TelegramLink() {
     if (!isConnected || !BOT_API) return null;
 
     return (
-        <div className="card telegram-link">
+        <div className="card telegram-link card--coral">
             <div className="card-header">
                 <div className="feed-title">
                     <span className="card-icon">📲</span>

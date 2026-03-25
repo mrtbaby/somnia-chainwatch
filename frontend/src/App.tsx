@@ -1,5 +1,5 @@
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { getDefaultConfig, RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
 import { WagmiProvider, useAccount } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { http } from "viem";
@@ -10,6 +10,8 @@ import { WalletConnect } from "./components/WalletConnect";
 import { RegisteredAlerts } from "./components/RegisteredAlerts";
 import { TelegramLink } from "./components/TelegramLink";
 import { LandingPage } from "./components/LandingPage";
+import { Footer } from "./components/Footer";
+import { DotPattern } from "./components/DotPattern";
 import "./App.css";
 
 // ── Telegram Mini App Bootstrap ────────────────────────────────
@@ -102,77 +104,71 @@ function AppContent() {
         Notification.requestPermission();
     }
 
-    // Show landing page when disconnected, full app when connected
-    if (!isConnected) {
-        return <LandingPage />;
-    }
-
     return (
         <div className="app">
-            <div className="bg-grid" />
-            <header className="header">
-                <div className="logo-section">
-                    <h1 className="logo">
-                        <img src="/logo.png" alt="ChainWatch Logo" className="logo-img" />
-                        ChainWatch
-                    </h1>
-                    <p className="tagline">
-                        Trustless on-chain alerts powered by{" "}
-                        <span className="highlight">Somnia Reactivity</span>
-                    </p>
-                </div>
-                <WalletConnect />
-            </header>
-
-            <main className="main">
-                <div className="hero-banner">
-                    <div className="hero-content">
-                        <h2>No polling. No backend. The chain watches itself.</h2>
-                        <p>
-                            Register threshold alerts on-chain. Get push notifications
-                            the instant conditions are met — sub-second delivery via
-                            Somnia's native pub/sub system.
-                        </p>
-                    </div>
-                    <div className="hero-stats">
-                        <div className="stat">
-                            <span className="stat-value">&lt;1s</span>
-                            <span className="stat-label">Delivery</span>
+            {!isConnected ? (
+                <LandingPage />
+            ) : (
+                <>
+                    <header className="main-header">
+                        <div className="main-header-brand">
+                            <img src="/logo.png" alt="ChainWatch" className="main-header-logo" />
+                            <span className="main-header-title">ChainWatch</span>
                         </div>
-                        <div className="stat">
-                            <span className="stat-value">0</span>
-                            <span className="stat-label">Polling</span>
+                        <div className="main-header-actions">
+                            <WalletConnect />
                         </div>
-                        <div className="stat">
-                            <span className="stat-value">∞</span>
-                            <span className="stat-label">Uptime</span>
+                    </header>
+
+                    <main className="main">
+                        <div
+                            className="hero-banner hero-banner--black"
+                            style={{
+                                backgroundColor: '#000000',
+                                backgroundImage: 'none',
+                                color: '#ffffff',
+                                opacity: 1,
+                                position: 'relative',
+                                zIndex: 10
+                            }}
+                        >
+                            <div className="hero-content" style={{ position: 'relative', zIndex: 20 }}>
+                                <h2 style={{ color: '#ffffff' }}>No polling. No backend. The chain watches itself.</h2>
+                                <p style={{ color: '#ffffff', opacity: 1 }}>
+                                    Register threshold alerts on-chain. Get push notifications
+                                    the instant conditions are met — sub-second delivery via
+                                    Somnia's native pub/sub system.
+                                </p>
+                            </div>
+                            <div className="hero-stats">
+                                <div className="stat">
+                                    <span className="stat-value">&lt;1s</span>
+                                    <span className="stat-label">Delivery</span>
+                                </div>
+                                <div className="stat">
+                                    <span className="stat-value">0</span>
+                                    <span className="stat-label">Polling</span>
+                                </div>
+                                <div className="stat">
+                                    <span className="stat-value">∞</span>
+                                    <span className="stat-label">Uptime</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="grid">
-                    <AlertForm />
-                    <AlertFeed />
-                </div>
+                        <div className="grid">
+                            <AlertForm />
+                            <AlertFeed />
+                        </div>
 
-                <RegisteredAlerts />
+                        <RegisteredAlerts />
 
-                <TelegramLink />
-            </main>
+                        <TelegramLink />
+                    </main>
 
-            <footer className="footer">
-                <p>
-                    Built for the{" "}
-                    <a
-                        href="https://docs.somnia.network/developer/reactivity"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Somnia Reactivity
-                    </a>{" "}
-                    Hackathon • Somnia Testnet (Chain ID: 50312)
-                </p>
-            </footer>
+                    <Footer />
+                </>
+            )}
         </div>
     );
 }
@@ -182,8 +178,8 @@ export default function App() {
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider
-                    theme={darkTheme({
-                        accentColor: "#8b5cf6",
+                    theme={lightTheme({
+                        accentColor: "#7C3AED",
                         accentColorForeground: "white",
                         borderRadius: "small",
                         fontStack: "system",

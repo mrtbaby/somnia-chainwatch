@@ -1,7 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useBalance } from 'wagmi';
-
 import { formatUnits } from 'viem';
+import { LiquidMetalButton } from './LiquidMetalButton';
 
 export function WalletConnect() {
     const { address } = useAccount();
@@ -39,17 +39,20 @@ export function WalletConnect() {
 
                     if (!connected) {
                         return (
-                            <button onClick={openConnectModal} type="button" className="btn btn-primary">
-                                Connect Wallet
-                            </button>
+                            <LiquidMetalButton 
+                                onClick={openConnectModal} 
+                                label="Connect Wallet" 
+                            />
                         );
                     }
 
                     if (chain.unsupported) {
                         return (
-                            <button onClick={openChainModal} type="button" className="btn btn-primary" style={{ background: 'var(--error)' }}>
-                                Wrong network
-                            </button>
+                            <LiquidMetalButton 
+                                onClick={openChainModal} 
+                                style={{ border: '1px solid var(--error)' }}
+                                label="Wrong network"
+                            />
                         );
                     }
 
@@ -59,38 +62,40 @@ export function WalletConnect() {
 
                     return (
                         <div style={{ display: 'flex', gap: 12 }}>
-                            <button
+                            <LiquidMetalButton
                                 onClick={openChainModal}
-                                style={{ display: 'flex', alignItems: 'center' }}
-                                type="button"
-                                className="btn btn-secondary"
+                                width={160}
                             >
-                                {chain.hasIcon && (
-                                    <div
-                                        style={{
-                                            background: chain.iconBackground,
-                                            width: 16,
-                                            height: 16,
-                                            borderRadius: 999,
-                                            overflow: 'hidden',
-                                            marginRight: 6,
-                                        }}
-                                    >
-                                        {chain.iconUrl && (
-                                            <img
-                                                alt={chain.name ?? 'Chain icon'}
-                                                src={chain.iconUrl}
-                                                style={{ width: 16, height: 16 }}
-                                            />
-                                        )}
-                                    </div>
-                                )}
-                                {chain.name}
-                            </button>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    {chain.hasIcon && (
+                                        <div
+                                            style={{
+                                                background: chain.iconBackground,
+                                                width: 16,
+                                                height: 16,
+                                                borderRadius: 999,
+                                                overflow: 'hidden',
+                                                marginRight: 8,
+                                            }}
+                                        >
+                                            {chain.iconUrl && (
+                                                <img
+                                                    alt={chain.name ?? 'Chain icon'}
+                                                    src={chain.iconUrl}
+                                                    style={{ width: 16, height: 16 }}
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                                    {chain.name}
+                                </div>
+                            </LiquidMetalButton>
 
-                            <button onClick={openAccountModal} type="button" className="btn btn-secondary">
-                                {formattedBalance} &nbsp;&bull;&nbsp; {account.displayName}
-                            </button>
+                            <LiquidMetalButton 
+                                onClick={openAccountModal} 
+                                label={`${formattedBalance} • ${account.displayName}`}
+                                width={220}
+                            />
                         </div>
                     );
                 }}

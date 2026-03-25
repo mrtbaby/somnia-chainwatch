@@ -10,11 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@paper-design/shaders": "^0.0.72",
+    "@paper-design/shaders-react": "^0.0.72",
     "@rainbow-me/rainbowkit": "^2.2.10",
     "@somnia-chain/reactivity": "^0.1.10",
     "@tanstack/react-query": "^5.90.21",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.6.0",
+    "motion": "^12.38.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.5.0",
     "viem": "^2.46.3",
     "wagmi": "^3.5.0"
   },

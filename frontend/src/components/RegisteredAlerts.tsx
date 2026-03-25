@@ -48,8 +48,6 @@ export function RegisteredAlerts() {
         const ids = alertIds as bigint[];
         setIsLoading(true);
 
-        // We can't use hooks in a loop, so we'll use the publicClient directly
-        // via window.ethereum or a raw fetch approach
         const fetchAlertDetails = async () => {
             try {
                 const client = createPublicClient({
@@ -97,7 +95,7 @@ export function RegisteredAlerts() {
     const activeAlerts = alertDetails.filter((a) => a.active);
 
     return (
-        <div className="card registered-alerts">
+        <div className="card registered-alerts card--black">
             <div className="card-header">
                 <div className="feed-title">
                     <span className="card-icon">📋</span>
