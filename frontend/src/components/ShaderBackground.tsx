@@ -1,6 +1,5 @@
 import { MeshGradient } from "@paper-design/shaders-react";
 import { BGPattern } from "./BGPattern";
-import { motion } from "motion/react";
 
 export function ShaderBackground() {
     return (

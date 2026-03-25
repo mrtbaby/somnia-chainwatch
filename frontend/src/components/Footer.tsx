@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { BGPattern } from "./BGPattern";
 
 /* ─── Footer Link Data ──────────────────────────────────────── */
