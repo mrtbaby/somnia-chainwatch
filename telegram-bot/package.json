@@ -1,0 +1,17 @@
+{
+    "name": "chainwatch-telegram-bot",
+    "version": "1.0.0",
+    "description": "ChainWatch Telegram notification bot — listens for AlertTriggered events on Somnia and sends Telegram notifications",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "build": "echo \"No build step required\""
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "ethers": "^6.13.4",
+        "express": "^4.21.2",
+        "node-telegram-bot-api": "^0.66.0"
+    }
+}
