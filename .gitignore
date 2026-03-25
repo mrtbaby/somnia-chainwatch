@@ -15,5 +15,5 @@ telegram-bot/node_modules/
 telegram-bot/dist/
 
 
-# Code Components
-components/
+# Code Components (root-level reference folder only)
+/components/

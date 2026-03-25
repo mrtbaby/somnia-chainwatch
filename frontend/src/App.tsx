@@ -11,7 +11,6 @@ import { RegisteredAlerts } from "./components/RegisteredAlerts";
 import { TelegramLink } from "./components/TelegramLink";
 import { LandingPage } from "./components/LandingPage";
 import { Footer } from "./components/Footer";
-import { DotPattern } from "./components/DotPattern";
 import "./App.css";
 
 // ── Telegram Mini App Bootstrap ────────────────────────────────
